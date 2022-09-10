@@ -26,13 +26,12 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt update && sudo apt -yqq install libpq-dev postgresql-client
       - uses: actions/checkout@v3
+      - run: bundle lock --add-platform x86_64-linux
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
       - name: Load schema
         run: bundle exec rails db:schema:load --trace
-      - name: Check zeitwerk
-        run: bin/rails zeitwerk:check
       - name: Run tests
         run:  bundle exec rails test 
