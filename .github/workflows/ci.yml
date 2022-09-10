@@ -7,6 +7,10 @@ jobs:
       db: 
         image: postgres:11
         ports: ["5432:5432"]
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: learn_ci_cd_test
         options: >-
           --health-cmd pg-isready
           --health-interval 10s
