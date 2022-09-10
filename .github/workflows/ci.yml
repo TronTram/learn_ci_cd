@@ -30,11 +30,13 @@ jobs:
         with:
           ruby-version: 3.1.2
           bundler-cache: true
-      - name: Build and run tests
+      - name: Load schema
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/learn_ci_cd_test
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: bundle exec rails db:schema:load --trace
+      - name: Build and run tests
         run: |
           bundle install --jobs 4 --retry 3
           bundle exec rails db:prepare
