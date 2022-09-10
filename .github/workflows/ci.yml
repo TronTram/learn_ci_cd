@@ -30,6 +30,8 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
+      - name: Load schema
+        run: bundle exec rails db:schema:load --trace
       - name: Build and run tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/learn_ci_cd_test
