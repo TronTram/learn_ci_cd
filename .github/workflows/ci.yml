@@ -26,8 +26,6 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt update && sudo apt -yqq install libpq-dev postgresql-client
       - uses: actions/checkout@v3
-      - name: Lock platform
-        run: bundle lock --add-platform x86_64-linux
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
