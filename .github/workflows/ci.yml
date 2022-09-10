@@ -1,5 +1,10 @@
 name: CI
-on: [ push, pull_request ]
+on: 
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -18,11 +23,12 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - name: run apt-update
-        run: sudo apt-get update
       - name: Install PostgreSQL client
-        run: sudo apt-get -yqq install libpq-dev postgresql-client
-      - uses: actions/checkout@v2
+        run: sudo apt update && sudo apt -yqq install libpq-dev postgresql-client
+      - uses: actions/checkout@v3
+      - uses: bahmutov/npm-install@v1
+      - run: yarn build
+      - run: yarn build:css
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
