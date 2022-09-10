@@ -26,9 +26,6 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt update && sudo apt -yqq install libpq-dev postgresql-client
       - uses: actions/checkout@v3
-      - uses: bahmutov/npm-install@v1
-      - run: yarn build
-      - run: yarn build:css
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
