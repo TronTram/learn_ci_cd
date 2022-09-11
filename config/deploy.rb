@@ -1,8 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "learn_ci_cd"
+set :repo_url, "git@github.com:TronTram/learn_ci_cd.git"
+
+# capistrano-rbenv
+set :rbenv_ruby, File.read(".ruby-version").strip
+set :rbenv_custom_path, "/home/deploy/.rbenv"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
